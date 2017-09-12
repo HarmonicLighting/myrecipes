@@ -1,0 +1,40 @@
+$theme-colors: (
+  primary: #6e31af,
+  secondary: #868e96,
+  success: #28a745,
+  info: #17a2b8,
+  warning: #ffc107,
+  danger: #dc3545,
+  light: #f8f9fa,
+  dark: #343a40
+);
+
+#logo{
+  float: left;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover{
+  text-decoration: none;
+  color: lighten(#6e31af, 40%)
+}
+
+.center{
+  text-align: center;
+}
+
+.jumbotron{
+  background-image: asset-url('cover_image.jpg');
+  background-size: cover;
+  height: 70vh;
+}
+
+.footer{
+  padding-top: 1.5rem;
+  color: #777;
+  border-top: .05rem solid #e5e5e5;
+}

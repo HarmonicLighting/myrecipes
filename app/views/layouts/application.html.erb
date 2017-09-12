@@ -3,12 +3,10 @@
   <head>
     <title>Myrecipes</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag 'toolkit.min' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
   </head>
@@ -19,9 +17,6 @@
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
-    <!-- Include jQuery (required) and the JS -->
-    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" %>
     <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" %>
-    <%= javascript_include_tag "toolkit.min" %>
   </body>
 </html>
