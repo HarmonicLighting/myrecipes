@@ -1,1 +1,7 @@
-<h1>Recipes New</h1>
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>Share a new recipe</h2>
+  </div>
+</div>
+<%= render 'recipes/errors', recipe: @recipe %>
+<%= render 'recipes/form', recipe: @recipe, verb:"Share" %>

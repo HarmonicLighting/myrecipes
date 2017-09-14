@@ -1,0 +1,32 @@
+<%= form_for recipe do |f|  %>
+<div class="recipe-block">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-2 right">
+        <%= f.label :name, "Name"  %>
+      </div>
+      <div class="col-9">
+        <%= f.text_field :name, class:"form-control", placeholder: "The name of your recipe", input_html: {maxlength: 500} %>
+        <small class="form-text text-muted">This is how your recipe will be known as.</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-2 right">
+        <%= f.label :description, "Steps"  %>
+      </div>
+      <div class="col-9">
+        <%= f.text_area :description, class:"form-control recipe-form-text", placeholder: "Enter steps to prepare recipe" %>
+        <small class="form-text text-muted">Please provide clear instructions to prepare this dish.</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-block">
+  <div class="col center">
+    <%= f.submit "#{verb} this recipe!", class: "btn btn-primary" %> <br />
+    <%= link_to "[ Cancel ]", recipes_path %>
+  </div>
+</div>
+<% end %>

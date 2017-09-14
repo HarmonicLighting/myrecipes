@@ -1,0 +1,24 @@
+<% if flash[:success] %>
+<div class="alert alert-success .alert-dismissible" role="alert">
+  <b>
+    <%= flash[:success][0] %>
+  </b>
+  <%= flash[:success][1] %>
+</div>
+<% end %>
+<% if flash[:warning] %>
+<div class="alert alert-warning .alert-dismissible" role="alert">
+  <b>
+    <%= flash[:warning][0] %>
+  </b>
+  <%= flash[:warning][1] %>
+</div>
+<% end %>
+<% if flash[:danger] %>
+<div class="alert alert-danger .alert-dismissible" role="alert">
+  <b>
+    <%= flash[:danger][0] %>
+  </b>
+  <%= flash[:danger][1] %>
+</div>
+<% end %>

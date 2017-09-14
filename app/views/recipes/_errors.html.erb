@@ -1,0 +1,13 @@
+<% if recipe.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Oops!</h4>
+  <p>The following <%= pluralize(recipe.errors.count, "error") %> prevented you from creating a new recipe:</p>
+  <ul>
+    <% recipe.errors.full_messages.each do |msg|%>
+    <li>
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

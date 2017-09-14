@@ -37,6 +37,11 @@ $recipe-block-color: #b393ff;
   background-color: lighten($recipe-block-color, 19%);
 }
 
+.recipe-form-text{
+  min-height: 40vh;
+  // background: linear-gradient(white, lighten(#6e31af, 30%)) !important;
+}
+
 .img-circle {
     border-radius: 50%;
     margin: 5px;
