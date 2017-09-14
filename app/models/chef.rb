@@ -7,7 +7,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class Chef < ApplicationRecord
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
   validates :name, :password_digest, presence: true, length: {maximum: 30}
   validates :email, presence: true, uniqueness: true, case_sensitive: false, email: true
   before_save {self.email = self.email.downcase}
