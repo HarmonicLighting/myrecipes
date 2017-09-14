@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 chef = Chef.create(name: 'John', email: 'john@example.com',password_digest: 'asdef12345')
-Chef.create(name: 'Joe', email: 'JOE@EXAMPLE.COM',password_digest: '12345asdef')
-recipe = Recipe.new(name: 'Ordinary soup', description: 'Buy an instant soup at the closest grocery store and prepare it.')
-chef.recipes << recipe
+chef2 = Chef.create(name: 'Joe', email: 'JOE@EXAMPLE.COM',password_digest: '12345asdef')
+chef.recipes.create(name: 'Ordinary soup', description: 'Buy an instant soup at the closest grocery store and prepare it.')
+chef.recipes.create(name: 'Ordinary steak', description: 'Buy an steak at the closest grocery store and prepare it.')
+chef2.recipes.create(name: 'Ordinary taco', description: 'Buy an taco at the closest grocery store and prepare it.')

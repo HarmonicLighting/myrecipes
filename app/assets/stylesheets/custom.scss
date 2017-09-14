@@ -23,6 +23,16 @@ $theme-colors: (
   color: lighten(#6e31af, 40%)
 }
 
+$recipe-block-color: #b393ff;
+
+.recipe-block{
+  margin-top: 30px;
+  padding: 3em;
+  border: 3px solid $recipe-block-color;
+  border-radius: 2em;
+  background-color: lighten($recipe-block-color, 20%);
+}
+
 .navbar{
   margin-bottom: 10px;
 }
@@ -38,6 +48,7 @@ $theme-colors: (
 }
 
 .footer{
+  margin-top: 30px;
   padding-top: 1.5rem;
   color: #777;
   border-top: .05rem solid #e5e5e5;

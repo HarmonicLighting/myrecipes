@@ -8,15 +8,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
   </head>
 
   <body>
-    <div class="container-fluid">
-      <%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
+    <div class="container">
       <%= yield %>
-      <%= render 'layouts/footer' %>
     </div>
+    <%= render 'layouts/footer' %>
     <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" %>
   </body>
 </html>

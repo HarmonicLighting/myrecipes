@@ -8,7 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
-gem 'bcrypt' 
+gem 'rails-controller-testing'
+gem 'bcrypt'
 gem 'normalize-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
