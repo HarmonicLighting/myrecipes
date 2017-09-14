@@ -1,6 +1,6 @@
 $theme-colors: (
   primary: #6e31af,
-  secondary: #868e96,
+  secondary: #9189a5,
   success: #28a745,
   info: #17a2b8,
   warning: #ffc107,
@@ -26,11 +26,29 @@ $theme-colors: (
 $recipe-block-color: #b393ff;
 
 .recipe-block{
-  margin-top: 30px;
-  padding: 3em;
-  border: 3px solid $recipe-block-color;
-  border-radius: 2em;
+  margin-top: 20px;
+  padding: 2em;
+  border: 2px solid $recipe-block-color;
+  border-radius: 1.5em;
   background-color: lighten($recipe-block-color, 20%);
+}
+
+.recipe-block:hover{
+  background-color: lighten($recipe-block-color, 19%);
+}
+
+.img-circle {
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.footer-block{
+  margin-top: 20px;
+}
+
+.created-at{
+  text-align: right;
+  margin-right: 25px;
 }
 
 .navbar{
@@ -39,6 +57,14 @@ $recipe-block-color: #b393ff;
 
 .center{
   text-align: center;
+}
+
+.left{
+  text-align: left;
+}
+
+.right{
+  text-align: right;
 }
 
 .jumbotron{

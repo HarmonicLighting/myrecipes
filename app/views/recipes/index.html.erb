@@ -8,19 +8,40 @@
 <div class="recipe-block">
   <div class="row">
     <div class="col">
-      <h3><%= recipe.name %></h3>
+      <h3><%= link_to recipe.name.capitalize, recipe_path(recipe) %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <div class="col center">
+          <%= gravatar_for(recipe.chef, size: 100)%>
+          <h6>By <%= recipe.chef.name %></h6> <br>
+        </div>
+      </div>
       <p>
-        <h6>By <%= recipe.chef.name %></h6> <br>
         <small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
       </p>
     </div>
+    <div class="col-8">
+        <h4>Steps:</h4>
+        <p>
+          <%= truncate(recipe.description, length: 150) %>
+        </p>
+    </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row right">
     <div class="col">
       <%= link_to "check it", recipe_path(recipe), class:"btn btn-outline-primary btn-sm" %>
       <%= link_to "edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
       <%= link_to "delete it", recipe_path(recipe), class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
+    <!-- <div class="col-3">
+      <%= link_to "edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "delete it", recipe_path(recipe), class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: "Are you sure?"} %>
+    </div> -->
   </div>
 </div>
 <% end %>
