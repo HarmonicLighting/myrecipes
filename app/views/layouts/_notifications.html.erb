@@ -1,5 +1,9 @@
+<div class="container-fluid">
 <% if flash[:success] %>
-<div class="alert alert-success .alert-dismissible" role="alert">
+<div class="alert alert-success .alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <b>
     <%= flash[:success][0] %>
   </b>
@@ -7,7 +11,10 @@
 </div>
 <% end %>
 <% if flash[:warning] %>
-<div class="alert alert-warning .alert-dismissible" role="alert">
+<div class="alert alert-warning .alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <b>
     <%= flash[:warning][0] %>
   </b>
@@ -15,10 +22,25 @@
 </div>
 <% end %>
 <% if flash[:danger] %>
-<div class="alert alert-danger .alert-dismissible" role="alert">
+<div class="alert alert-danger .alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <b>
     <%= flash[:danger][0] %>
   </b>
   <%= flash[:danger][1] %>
 </div>
 <% end %>
+<% if flash[:info] %>
+<div class="alert alert-info .alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <b>
+    <%= flash[:info][0] %>
+  </b>
+  <%= flash[:info][1] %>
+</div>
+<% end %>
+</div>

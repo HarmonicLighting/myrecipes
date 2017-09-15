@@ -41,6 +41,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
     assert_match @recipe.name, response.body
     assert_match @recipe.description, response.body
     assert_match @chef.name, response.body
+    assert_select 'a[href=?]', edit_recipe_path(@recipe), text:"edit it"
   end
 
   test "create new valid recipe" do
@@ -64,6 +65,43 @@ class RecipesTest < ActionDispatch::IntegrationTest
     end
     assert_template 'recipes/new'
     assert_select 'div.recipe-block'
+  end
+
+  test "edit valid recipe" do
+    get edit_recipe_path(@recipe)
+    assert_template 'recipes/edit'
+    updated_name = @recipe.name + " edited"
+    updated_description = @recipe.description + " v2"
+    assert_difference 'Recipe.count', 0 do
+      patch recipe_path(@recipe), params:{recipe:{name: updated_name, description: updated_description}}
+    end
+    assert_redirected_to @recipe
+    follow_redirect!
+    assert_not flash.empty?
+    assert_match updated_name.capitalize, response.body
+    assert_match updated_description, response.body
+    @recipe.reload
+    assert_match updated_name.capitalize, @recipe.name
+    assert_match updated_description, @recipe.description
+  end
+
+  test "reject invalid recipe update" do
+    get edit_recipe_path(@recipe)
+    assert_template 'recipes/edit'
+    patch recipe_path(@recipe), params:{recipe:{name: " ", description:" some description"}}
+    assert_template 'recipes/edit'
+    assert_select 'div.recipe-block'
+  end
+
+  test "remove valid recipe" do
+    get recipe_path(@recipe)
+    assert_template 'recipes/show'
+    assert_select 'a[href=?]', recipe_path(@recipe)
+    assert_difference 'Recipe.count', -1 do
+      delete recipe_path(@recipe)
+    end
+    assert_redirected_to recipes_path
+    assert_not flash.empty?
   end
 
 end
