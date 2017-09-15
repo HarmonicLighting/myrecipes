@@ -24,11 +24,12 @@ $theme-colors: (
 }
 
 $recipe-block-color: #b393ff;
+$chef-block-color: #82acff;
 
 .recipe-block{
   margin-top: 20px;
   padding: 2em;
-  border: 2px solid $recipe-block-color;
+  border: 0px solid $recipe-block-color;
   border-radius: 1.5em;
   background-color: lighten($recipe-block-color, 20%);
 }
@@ -40,6 +41,32 @@ $recipe-block-color: #b393ff;
 .recipe-form-text{
   min-height: 40vh;
   // background: linear-gradient(white, lighten(#6e31af, 30%)) !important;
+}
+
+.chef-block{
+  margin-top: 20px;
+  padding: 2em;
+  border: 0px solid $chef-block-color;
+  border-radius: 1.5em;
+  background-color: lighten($chef-block-color, 20%);
+}
+
+.chef-block:hover{
+  background-color: lighten($chef-block-color, 19%);
+}
+
+.chef-profile-block{
+  background-color: lighten($chef-block-color, 20%);
+  margin-top: 20px;
+  padding: 2em;
+  border-radius: 1.5em;
+}
+
+.chef-profile-block:hover{
+  background-color: lighten($chef-block-color, 19%);
+}
+.light-text{
+  color: white !important;
 }
 
 .img-circle {

@@ -1,0 +1,7 @@
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>Account Edition</h2>
+  </div>
+</div>
+<%= render 'layouts/errors', object: @chef, action: "saving changes" %>
+<%= render 'chefs/form', chef: @chef, verb:"save", path: chef_path(@chef) %>

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ChefTest < ActiveSupport::TestCase
   def setup
-    @chef = Chef.create(name: 'Doe', email: 'doe@example.com',password_digest: 'asdef12345')
+    @chef = Chef.create(name: 'Doe', email: 'doe@example.com', password: 'asdef12345', password_confirmation:'asdef12345')
   end
 
   test "should be valid" do
@@ -56,5 +56,29 @@ class ChefTest < ActiveSupport::TestCase
     @chef.email = mixed_email
     assert @chef.save
     assert_equal mixed_email.downcase, @chef.reload.email
+  end
+
+  test "password should be present" do
+    chef = Chef.new(name: 'Doe', email: 'anotherone@example.com', password: ' ', password_confirmation:' ')
+    assert_not chef.valid?
+  end
+  test "password show be at least 5 characters and at most 50 characters long" do
+    chef = Chef.new(name: 'Doe', email: 'anotherone@example.com', password: 'a'*4, password_confirmation:'a'*4)
+    assert_not chef.valid?
+    chef.password = 'a'*51
+    chef.password_confirmation = 'a'*51
+    assert_not chef.valid?
+    chef.password = 'a'*50
+    chef.password_confirmation = 'a'*50
+    assert chef.valid?
+  end
+
+  test "password should be confirmed" do
+    chef = Chef.new(name: 'Doe', email: 'anotherone@example.com', password: 'a'*5, password_confirmation:"")
+    assert_not chef.valid?
+    chef.password_confirmation = 'a'*6
+    assert_not chef.valid?
+    chef.password_confirmation = 'a'*5
+    assert chef.valid?
   end
 end

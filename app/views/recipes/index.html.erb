@@ -5,38 +5,5 @@
   </div>
 </div>
 <% @recipes.each do |recipe| %>
-<div class="recipe-block">
-  <div class="row">
-    <div class="col">
-      <h3>
-        <%= link_to recipe.name.capitalize , recipe_path(recipe) %>
-        <% if recipe.created_at + 1.day > Time.now %>
-        <%= render 'badge', text: "New" %>
-        <% end %>
-      </h3>
-    </div>
-  </div>
-  <div class="row justify-content-between">
-    <div class="col-3 center">
-          <%= gravatar_for(recipe.chef, size: 100)%>
-          <h6>By <%= recipe.chef.name %></h6> <br>
-    </div>
-    <div class="col-8">
-        <h4>Steps:</h4>
-        <p>
-          <%= truncate(recipe.description, length: 150) %>
-        </p>
-    </div>
-  </div>
-  <p>
-    <small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
-  </p>
-  <div class="row right">
-    <div class="col">
-      <%= link_to "check it", recipe_path(recipe), class:"btn btn-outline-primary btn-sm" %>
-      <%= link_to "edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
-      <%= link_to "delete it", recipe_path(recipe), class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: "Are you sure?"} %>
-    </div>
-  </div>
-</div>
+<%= render 'recipe', recipe: recipe %>
 <% end %>

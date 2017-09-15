@@ -1,0 +1,52 @@
+<%= form_for chef do |f|  %>
+<div class="chef-block">
+  <div class="form-group">
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-2">
+        <%= f.label :name, "Your name"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.text_field :name, class:"form-control" %>
+        <small class="form-text text-muted">This is how you will be known as.</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-2">
+        <%= f.label :description, "Your email"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.email_field :email, class:"form-control", placeholder: "youremail@example.com" %>
+        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-2">
+        <%= f.label :password, "Your password"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.password_field :password, class:"form-control" %>
+        <small class="form-text text-muted">Your password must be at least five characters long.</small>
+      </div>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-2">
+        <%= f.label :password_confirmation, "Confirm password"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.password_field :password_confirmation, class:"form-control" %>
+        <small class="form-text text-muted">Both password inputs must match.</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-block">
+  <div class="col center">
+    <%= f.submit "#{verb}", class: "btn btn-primary" %> <br />
+    <%= link_to "[ Cancel ]", path %>
+  </div>
+</div>
+<% end %>

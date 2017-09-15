@@ -3,5 +3,5 @@
     <h2>Edit this recipe</h2>
   </div>
 </div>
-<%= render 'recipes/errors', recipe: @recipe %>
+<%= render 'layouts/errors', object: @recipe, action: "editing this recipe" %>
 <%= render 'recipes/form', recipe: @recipe, verb:"Update" %>

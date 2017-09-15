@@ -6,7 +6,7 @@
         <%= f.label :name, "Name"  %>
       </div>
       <div class="col-9">
-        <%= f.text_field :name, class:"form-control", placeholder: "The name of your recipe", input_html: {maxlength: 500} %>
+        <%= f.text_field :name, class:"form-control", placeholder: "The name of your recipe" %>
         <small class="form-text text-muted">This is how your recipe will be known as.</small>
       </div>
     </div>
@@ -17,7 +17,7 @@
         <%= f.label :description, "Steps"  %>
       </div>
       <div class="col-9">
-        <%= f.text_area :description, class:"form-control recipe-form-text", placeholder: "Enter steps to prepare recipe" %>
+        <%= f.text_area :description, class:"form-control recipe-form-text", placeholder: "Enter steps to prepare recipe", input_html: {maxlength: 500} %>
         <small class="form-text text-muted">Please provide clear instructions to prepare this dish.</small>
       </div>
     </div>

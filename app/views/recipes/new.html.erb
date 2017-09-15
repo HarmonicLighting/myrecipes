@@ -3,5 +3,5 @@
     <h2>Share a new recipe</h2>
   </div>
 </div>
-<%= render 'recipes/errors', recipe: @recipe %>
+<%= render 'layouts/errors', object: @recipe, action: "creating a new recipe" %>
 <%= render 'recipes/form', recipe: @recipe, verb:"Share" %>

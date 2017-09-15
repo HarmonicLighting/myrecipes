@@ -1,0 +1,7 @@
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>Account Creation</h2>
+  </div>
+</div>
+<%= render 'layouts/errors', object: @chef, action: "signing up" %>
+<%= render 'chefs/form', chef: @chef, verb:"Sign Up!", path: root_path %>

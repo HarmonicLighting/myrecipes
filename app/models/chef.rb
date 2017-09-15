@@ -8,7 +8,11 @@ end
 
 class Chef < ApplicationRecord
   has_many :recipes, dependent: :destroy
-  validates :name, :password_digest, presence: true, length: {maximum: 30}
+  has_secure_password
+  validates :password_digest, presence: true, length: {maximum: 72}
+  validates :password, presence: true, confirmation: true, length:{in: 5..50}, on: :create
+  validates :password_confirmation, presence: true, on: :create
+  validates :name, presence: true, length: {maximum: 30}
   validates :email, presence: true, uniqueness: true, case_sensitive: false, email: true
   before_save {self.email = self.email.downcase}
 end

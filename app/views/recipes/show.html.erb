@@ -1,6 +1,11 @@
 <div class="row justify-content-center">
   <div class="col center">
-    <h2><%= @recipe.name.capitalize %></h2>
+    <h2>
+      <%= @recipe.name.capitalize %>
+      <% if @recipe.created_at + 1.day > Time.now %>
+      <%= render 'badge', text: "New Recipe" %>
+      <% end %>
+    </h2>
   </div>
 </div>
 <div class="recipe-block">

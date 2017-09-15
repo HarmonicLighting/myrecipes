@@ -1,0 +1,13 @@
+<% if object.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Oops!</h4>
+  <p>The following <%= pluralize(object.errors.count, "error") %> prevented you from <%= action %>:</p>
+  <ul>
+    <% object.errors.full_messages.each do |msg|%>
+    <li>
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
