@@ -1,0 +1,27 @@
+<div class="chef-profile-block">
+  <div class="row">
+    <div class="col-12 col-md-4 center">
+      <h3>
+        <%= link_to chef.name, chef_path(chef) %>
+        <% if chef.created_at + 1.day > Time.now %>
+        <br />
+        <small><%= render 'badge', text: "New Chef" %></small>
+        <% end %>
+      </h3>
+      <%= link_to gravatar_for( chef, size: 150), chef_path(chef) %> <br />
+      <small>Member since <%= chef.created_at.strftime("%B %d, %Y") %></small>
+    </div>
+    <div class="col-12 col-md-8">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <div class="row right">
+    <div class="col">
+      <%= link_to "View Profile", chef_path(chef), class:"btn btn-outline-secondary btn-sm" %>
+      <%= render 'layouts/modal_button', button_text:"Delete", id:"chef#{chef.id}", button_class: "btn btn-outline-danger btn-sm" %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,18 @@
-<h1 class="center">Your published recipes</h1>
-<div class="row justify-content-around">
-  <div col>
-    <%= link_to "Create new recipe!", new_recipe_path, class: "btn btn-secondary btn-lg" %>
+<% @recipes.each do |recipe| %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
+"Delete", path: recipe_path(recipe), method: "delete" %>
+<% end %>
+<h1 class="center">All our published recipes</h1>
+<div class="row">
+  <div class="col">
+    <%= will_paginate %>
   </div>
 </div>
 <% @recipes.each do |recipe| %>
 <%= render 'recipe', recipe: recipe %>
 <% end %>
+<div class="row">
+  <div class="col">
+    <%= will_paginate %>
+  </div>
+</div>

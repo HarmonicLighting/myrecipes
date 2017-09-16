@@ -1,10 +1,11 @@
 class ChefsController < ApplicationController
   def index
-    @chefs = Chef.all
+    @chefs = Chef.paginate(page: params[:page], per_page:5)
   end
 
   def show
     @chef = Chef.find(params[:id])
+    @recipes = @chef.recipes.paginate(page: params[:page], per_page:5)
   end
 
   def create
@@ -35,7 +36,15 @@ class ChefsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @chef = Chef.find(params[:id])
+    if @chef.destroy
+      flash[:warning]= ["Done!", "Chef #{@chef.name} and all it's recipes have been deleted."]
+      redirect_to chefs_path
+    else
+      flash[:danger]= ["Error", "Chef #{@chef.name} couldn't be deleted."]
+      redirect_to chefs_path
+    end
   end
 
   private

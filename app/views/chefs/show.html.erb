@@ -1,3 +1,7 @@
+<% @recipes.each do |recipe| %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
+"Delete", path: recipe_path(recipe), method: "delete" %>
+<% end %>
 <div class="row justify-content-center">
   <div class="col center">
     <h2>
@@ -28,16 +32,17 @@
 <div class="row">
   <div class="col center">
     <h4>
-      <%= @chef.name.capitalize %> Profile
-      has <%= @chef.recipes.count %> published recipes
+      <%= @chef.name %> has published <%= pluralize @chef.recipes.count, "recipe" %>
     </h4>
   </div>
 </div>
-<% @chef.recipes.each do |recipe| %>
+<%= will_paginate @recipes %>
+<% @recipes.each do |recipe| %>
 <%= render 'recipes/recipe', recipe: recipe %>
 <% end %>
-<div class="row justify-content-center footer-block">
-  <div class="col-2">
+<%= will_paginate @recipes %>
+<div class="row center footer-block">
+  <div class="col">
     <%= link_to "Go back", chefs_path, class: "btn btn-outline-info btn-sm" %>
   </div>
 </div>

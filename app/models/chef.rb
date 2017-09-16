@@ -15,4 +15,5 @@ class Chef < ApplicationRecord
   validates :name, presence: true, length: {maximum: 30}
   validates :email, presence: true, uniqueness: true, case_sensitive: false, email: true
   before_save {self.email = self.email.downcase}
+  before_save {self.name  = self.name.split.map(&:capitalize).join(' ')}
 end

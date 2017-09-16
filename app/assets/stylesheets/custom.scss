@@ -26,6 +26,12 @@ $theme-colors: (
 $recipe-block-color: #b393ff;
 $chef-block-color: #82acff;
 
+.pagination {
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
 .recipe-block{
   margin-top: 20px;
   padding: 2em;
@@ -88,7 +94,7 @@ $chef-block-color: #82acff;
 }
 
 .center{
-  text-align: center;
+  text-align: center !important;
 }
 
 .left{

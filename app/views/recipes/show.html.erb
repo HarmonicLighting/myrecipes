@@ -1,3 +1,5 @@
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{@recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
+"Delete", path: recipe_path(@recipe), method: "delete" %>
 <div class="row justify-content-center">
   <div class="col center">
     <h2>
@@ -26,7 +28,7 @@
   <div class="row right">
     <div class="col">
       <%= link_to "edit it", edit_recipe_path(@recipe), class:"btn btn-outline-secondary btn-sm" %>
-      <%= link_to "delete it", recipe_path(@recipe), class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= render 'layouts/modal_button', button_text:"Delete", id:"recipe#{@recipe.id}", button_class: "btn btn-outline-danger btn-sm" %>
     </div>
   </div>
 </div>

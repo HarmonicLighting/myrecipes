@@ -7,12 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <%= link_to "Our Chefs", chefs_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,7 +15,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to "Create a new recipe", new_recipe_path, class:"dropdown-item" %>
-            <%= link_to "Go to your recipes list", "#", class:"dropdown-item" %>
+            <%= link_to "Check all recipes", recipes_path, class:"dropdown-item" %>
           </div>
         </li>
       </ul>
@@ -30,8 +25,8 @@
             My options
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-            <%= link_to "Create a new recipe", new_recipe_path, class:"dropdown-item" %>
-            <%= link_to "Go to your recipes list", "#", class:"dropdown-item" %>
+            <%= link_to "Go to my profile", "#", class:"dropdown-item" %>
+            <%= link_to "Edit my profile", "#", class:"dropdown-item" %>
           </div>
         </li>
       </ul>
