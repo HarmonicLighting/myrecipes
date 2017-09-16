@@ -20,8 +20,11 @@
   </div>
   <div class="row right">
     <div class="col">
-      <%= link_to "View Profile", chef_path(chef), class:"btn btn-outline-secondary btn-sm" %>
+      <%= link_to "View Profile", chef_path(chef), class: "btn btn-outline-primary btn-sm" %>
+      <% if logged_in? && current_chef == chef %>
+      <%= link_to "Edit Profile", edit_chef_path(chef), class:"btn btn-outline-secondary btn-sm" %>
       <%= render 'layouts/modal_button', button_text:"Delete", id:"chef#{chef.id}", button_class: "btn btn-outline-danger btn-sm" %>
+      <% end %>
     </div>
   </div>
 </div>

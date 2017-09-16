@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
 
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @recipes = Recipe.paginate(page: params[:page],per_page:5)
@@ -12,7 +14,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.chef = Chef.first # temporary
+    @recipe.chef = current_chef
     if @recipe.save
       flash[:success]= ["Created!", "Recipe was created successfully!"]
       redirect_to recipe_path(@recipe)
@@ -55,5 +57,12 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def require_same_user
+    if current_chef != @recipe.chef
+      flash[:danger] = ["Invalid","You can only edit or delete your own recipes"]
+      redirect_to recipes_path
+    end
   end
 end

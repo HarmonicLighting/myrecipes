@@ -3,7 +3,9 @@ require 'test_helper'
 class RecipesTest < ActionDispatch::IntegrationTest
 
   def setup
-    @chef = Chef.create!(name:"TestChef", email:"thisisatest@email.com", password:"asdasfasdas", password_confirmation: "asdasfasdas")
+    @Email = "thisisatest@email.com"
+    @Password = "asdasfasdas"
+    @chef = Chef.create!(name:"TestChef", email: @Email, password: @Password, password_confirmation: "asdasfasdas")
     @recipe = @chef.recipes.create!(name:"Test recipe", description: "Add a lot of test to your app!")
     @recipe2 = @chef.recipes.create!(name:"Test recipe 2", description: "Add a lot of test to your app! v2")
   end
@@ -21,6 +23,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new recipe page" do
+    sign_in_as @chef, @Password
     get new_recipe_path
     assert_response :success
   end
@@ -31,11 +34,13 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit recipe page" do
+    sign_in_as @chef, @Password
     get edit_recipe_path(@recipe)
     assert_response :success
   end
 
   test "should get recipes show" do
+    sign_in_as @chef, @Password
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_match @recipe.name, response.body
@@ -45,6 +50,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "create new valid recipe" do
+    sign_in_as @chef, @Password
     get new_recipe_path
     assert_template 'recipes/new'
     name_of_recipe = "chicken saute"
@@ -58,6 +64,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid recipe submissions" do
+    sign_in_as @chef, @Password
     get new_recipe_path
     assert_template 'recipes/new'
     assert_no_difference 'Recipe.count' do
@@ -68,6 +75,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit valid recipe" do
+    sign_in_as @chef, @Password
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     updated_name = @recipe.name + " edited"
@@ -86,6 +94,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid recipe update" do
+    sign_in_as @chef, @Password
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     patch recipe_path(@recipe), params:{recipe:{name: " ", description:" some description"}}
@@ -94,6 +103,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "remove valid recipe" do
+    sign_in_as @chef, @Password
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_select 'a[href=?]', recipe_path(@recipe)

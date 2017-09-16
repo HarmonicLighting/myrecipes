@@ -1,6 +1,10 @@
+<% if logged_in? %>
 <% @chefs.each do |chef| %>
+<% if current_chef == chef %>
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"chef#{chef.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete chef #{chef.name}?", text_dismiss: "Cancel", text_action:
 "Delete", path: chef_path(chef), method: "delete" %>
+<% end %>
+<% end %>
 <% end %>
 <div class="row justify-content-center">
   <div class="col center">

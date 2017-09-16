@@ -1,6 +1,8 @@
+<% if logged_in? && current_chef.id == @chef.id %>
 <% @recipes.each do |recipe| %>
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
 "Delete", path: recipe_path(recipe), method: "delete" %>
+<% end %>
 <% end %>
 <div class="row justify-content-center">
   <div class="col center">
@@ -20,7 +22,9 @@
   </div>
   <div class="row right">
     <div class="col">
+      <% if logged_in? && current_chef.id == @chef.id %>
       <%= link_to "Edit", edit_chef_path(@chef), class:"btn btn-outline-secondary btn-sm" %>
+      <% end %>
     </div>
   </div>
 </div>

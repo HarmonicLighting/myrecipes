@@ -11,7 +11,7 @@
   </div>
   <div class="row justify-content-between">
     <div class="col-3 center">
-          <%= gravatar_for(recipe.chef, size: 100)%>
+          <%= link_to gravatar_for(recipe.chef, size: 100), chef_path(recipe.chef) %>
           <h6><%= link_to "by #{recipe.chef.name}", chef_path(recipe.chef) %></h6>
     </div>
     <div class="col-8">
@@ -26,9 +26,11 @@
   </p>
   <div class="row right">
     <div class="col">
-      <%= link_to "check it", recipe_path(recipe), class:"btn btn-outline-primary btn-sm" %>
-      <%= link_to "edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
-      <%= render 'layouts/modal_button', button_text:"Delete", id:"recipe#{recipe.id}", button_class: "btn btn-outline-danger btn-sm" %>
+      <%= link_to "Check it", recipe_path(recipe), class:"btn btn-outline-primary btn-sm" %>
+      <% if logged_in? && current_chef == recipe.chef %>
+      <%= link_to "Edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
+      <%= render 'layouts/modal_button', button_text:"Delete Recipe", id:"recipe#{recipe.id}", button_class: "btn btn-outline-danger btn-sm" %>
+      <% end %>
     </div>
   </div>
 </div>

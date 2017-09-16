@@ -14,21 +14,31 @@
             Recipes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "Create a new recipe", new_recipe_path, class:"dropdown-item" %>
             <%= link_to "Check all recipes", recipes_path, class:"dropdown-item" %>
+            <% if session[:chef_id] %>
+            <%= link_to "Create a new recipe", new_recipe_path, class:"dropdown-item" %>
+            <% end %>
           </div>
         </li>
       </ul>
       <ul class="navbar-nav">
+        <% if session[:chef_id] %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            My options
+            <%= current_chef.name %>'s profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-            <%= link_to "Go to my profile", "#", class:"dropdown-item" %>
-            <%= link_to "Edit my profile", "#", class:"dropdown-item" %>
+            <%= link_to "Go to my profile", chef_path(current_chef), class:"dropdown-item" %>
+            <%= link_to "Edit my profile", edit_chef_path(current_chef), class:"dropdown-item" %>
+            <hr />
+            <%= link_to "Log Out", logout_path, class:"dropdown-item", method: :delete %>
           </div>
         </li>
+        <% else %>
+        <li class="nav-item ">
+          <%= link_to "Sign In", login_path, class: "nav-link" %>
+        </li>
+        <% end %>
       </ul>
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

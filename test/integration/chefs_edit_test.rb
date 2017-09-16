@@ -2,10 +2,13 @@ require 'test_helper'
 
 class ChefsEditTest < ActionDispatch::IntegrationTest
   def setup
-    @chef = Chef.create!(name:"TestChef", email:"thisisatest@email.com", password:"asdasfasdas", password_confirmation: "asdasfasdas")
+    @Email = 'thisisatest@email.com'
+    @Password = 'asdasfasdas'
+    @chef = Chef.create!(name:"TestChef", email:"thisisatest@email.com", password: @Password, password_confirmation: @Password)
   end
 
-  test "reject an invalid edit" do
+  test "reject an invalid chef edit" do
+    sign_in_as @chef, @Password
     get edit_chef_path(@chef)
     assert_template 'chefs/edit'
     patch chef_path(@chef), params:{chef:{name: "", email: "someone@example.com"}}
@@ -13,7 +16,8 @@ class ChefsEditTest < ActionDispatch::IntegrationTest
     assert_select 'div.chef-block'
   end
 
-  test "accept valid signup" do
+  test "Accept a valid chef edit" do
+    sign_in_as @chef, @Password
     get edit_chef_path(@chef)
     assert_template 'chefs/edit'
     patch chef_path(@chef), params:{chef:{name: "Someone Special", email: "someonespecial@example.com"}}

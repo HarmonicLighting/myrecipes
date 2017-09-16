@@ -1,6 +1,10 @@
+<% if logged_in? %>
 <% @recipes.each do |recipe| %>
+<% if recipe.chef == current_chef %>
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
 "Delete", path: recipe_path(recipe), method: "delete" %>
+<% end %>
+<% end %>
 <% end %>
 <h1 class="center">All our published recipes</h1>
 <div class="row">
