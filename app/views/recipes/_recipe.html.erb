@@ -15,7 +15,7 @@
           <h6><%= link_to "by #{recipe.chef.name}", chef_path(recipe.chef) %></h6>
     </div>
     <div class="col-8">
-        <h4>Steps:</h4>
+        <h4>Steps (preview):</h4>
         <p>
           <%= truncate(recipe.description, length: 150) %>
         </p>

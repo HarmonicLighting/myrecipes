@@ -12,6 +12,7 @@
       <% if chef.admin? %>
       <span class="badge badge-pill badge-primary">Staff Member</span><br />
       <% end %>
+      Recipes: <%= chef.recipes.count %> <br />
       <small>Member since <%= chef.created_at.strftime("%B %d, %Y") %></small>
     </div>
     <div class="col-12 col-md-8">

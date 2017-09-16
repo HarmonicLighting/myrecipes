@@ -21,8 +21,9 @@
     <div class="col center">
       <%= gravatar_for @chef, size: 150 %> <br />
       <% if @chef.admin? %>
-      <span class="badge badge-pill badge-primary">Staff Member</span>
+      <span class="badge badge-pill badge-primary">Staff Member</span><br />
       <% end %>
+      Recipes: <%= @chef.recipes.count %>
     </div>
   </div>
   <div class="row right">
