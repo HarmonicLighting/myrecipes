@@ -1,6 +1,6 @@
 <% if logged_in? %>
 <% @chefs.each do |chef| %>
-<% if current_chef == chef %>
+<% if current_chef.admin? && !chef.admin? %>
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"chef#{chef.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete chef #{chef.name}?", text_dismiss: "Cancel", text_action:
 "Delete", path: chef_path(chef), method: "delete" %>
 <% end %>

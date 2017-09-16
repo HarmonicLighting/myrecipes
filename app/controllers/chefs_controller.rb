@@ -2,6 +2,7 @@ class ChefsController < ApplicationController
 
   before_action :set_chef, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: :destroy
 
   def index
     @chefs = Chef.paginate(page: params[:page], per_page:5)
@@ -39,11 +40,16 @@ class ChefsController < ApplicationController
   end
 
   def destroy
-    if @chef.destroy
-      flash[:warning]= ["Done!", "Chef #{@chef.name} and all it's recipes have been deleted."]
-      redirect_to chefs_path
+    if !@chef.admin?
+      if @chef.destroy
+        flash[:warning]= ["Done!", "Chef #{@chef.name} and all it's recipes have been deleted."]
+        redirect_to chefs_path
+      else
+        flash[:danger]= ["Error", "Chef #{@chef.name} couldn't be deleted."]
+        redirect_to chefs_path
+      end
     else
-      flash[:danger]= ["Error", "Chef #{@chef.name} couldn't be deleted."]
+      flash[:danger]= ["Invalidation", "Chef #{@chef.name} is an administrator and as such his/her account can not be destroyed."]
       redirect_to chefs_path
     end
   end
@@ -58,9 +64,16 @@ class ChefsController < ApplicationController
   end
 
   def require_same_user
-    if current_chef != @chef
+    if current_chef != @chef && !current_chef.admin?
       flash[:danger] = ["Invalid","You can only edit or delete your own account"]
       redirect_to chefs_path
+    end
+  end
+
+  def require_admin
+    if logged_in? && !current_chef.admin?
+      flash[:danger] = ['Invalid', 'Only an administrator can perform that action']
+      redirect_to root_path
     end
   end
 end

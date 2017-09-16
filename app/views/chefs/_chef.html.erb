@@ -9,6 +9,9 @@
         <% end %>
       </h3>
       <%= link_to gravatar_for( chef, size: 150), chef_path(chef) %> <br />
+      <% if chef.admin? %>
+      <span class="badge badge-pill badge-primary">Staff Member</span><br />
+      <% end %>
       <small>Member since <%= chef.created_at.strftime("%B %d, %Y") %></small>
     </div>
     <div class="col-12 col-md-8">
@@ -21,8 +24,10 @@
   <div class="row right">
     <div class="col">
       <%= link_to "View Profile", chef_path(chef), class: "btn btn-outline-primary btn-sm" %>
-      <% if logged_in? && current_chef == chef %>
+      <% if logged_in? && (current_chef == chef || current_chef.admin?) %>
       <%= link_to "Edit Profile", edit_chef_path(chef), class:"btn btn-outline-secondary btn-sm" %>
+      <% end %>
+      <% if logged_in? && current_chef.admin? && !chef.admin? %>
       <%= render 'layouts/modal_button', button_text:"Delete", id:"chef#{chef.id}", button_class: "btn btn-outline-danger btn-sm" %>
       <% end %>
     </div>

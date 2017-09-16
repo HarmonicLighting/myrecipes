@@ -27,7 +27,7 @@
   <div class="row right">
     <div class="col">
       <%= link_to "Check it", recipe_path(recipe), class:"btn btn-outline-primary btn-sm" %>
-      <% if logged_in? && current_chef == recipe.chef %>
+      <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
       <%= link_to "Edit it", edit_recipe_path(recipe), class:"btn btn-outline-secondary btn-sm" %>
       <%= render 'layouts/modal_button', button_text:"Delete Recipe", id:"recipe#{recipe.id}", button_class: "btn btn-outline-danger btn-sm" %>
       <% end %>

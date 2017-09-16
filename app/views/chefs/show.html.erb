@@ -1,6 +1,8 @@
-<% if logged_in? && current_chef.id == @chef.id %>
+<% if logged_in? && current_chef.admin? && !@chef.admin? %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"chef#{@chef.id}", title_text: "Confirm chef deletion", modal_text: "Do you really want to delete chef #{@chef.name}'s account?", text_dismiss: "Cancel", text_action:
+"Delete", path: chef_path(@chef), method: "delete" %>
 <% @recipes.each do |recipe| %>
-<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm recipe deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
 "Delete", path: recipe_path(recipe), method: "delete" %>
 <% end %>
 <% end %>
@@ -17,13 +19,19 @@
 <div class="chef-profile-block">
   <div class="row">
     <div class="col center">
-      <%= gravatar_for @chef, size: 150 %>
+      <%= gravatar_for @chef, size: 150 %> <br />
+      <% if @chef.admin? %>
+      <span class="badge badge-pill badge-primary">Staff Member</span>
+      <% end %>
     </div>
   </div>
   <div class="row right">
     <div class="col">
-      <% if logged_in? && current_chef.id == @chef.id %>
+      <% if logged_in? && (current_chef.id == @chef.id || current_chef.admin?) %>
       <%= link_to "Edit", edit_chef_path(@chef), class:"btn btn-outline-secondary btn-sm" %>
+      <% end %>
+      <% if logged_in? && current_chef.admin? && !@chef.admin? %>
+      <%= render 'layouts/modal_button', button_text:"Delete", id:"chef#{@chef.id}", button_class: "btn btn-outline-danger btn-sm" %>
       <% end %>
     </div>
   </div>
