@@ -28,3 +28,13 @@ chef5.recipes.create!(name: 'Ordinary cocktail', description: 'Buy a cocktail at
 chef5.recipes.create!(name: 'Ordinary pizza', description: 'Buy a pizza at the closest grocery store and prepare it.')
 chef6.recipes.create!(name: 'Ordinary muffins', description: 'Buy some muffins at the closest grocery store and prepare it.')
 chef6.recipes.create!(name: 'Ordinary coffee', description: 'Buy a coffee at the closest grocery store and prepare it.')
+
+DifficultyLevel.create!(level: 1, name: 'Easy')
+DifficultyLevel.create!(level: 2, name: 'Medium')
+DifficultyLevel.create!(level: 3, name: 'High')
+
+Ingredient.create!(name:'Chicken')
+Ingredient.create!(name:'Potato')
+Ingredient.create!(name:'Tomato')
+Ingredient.create!(name:'Pork')
+Ingredient.create!(name:'Apple')

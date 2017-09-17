@@ -1,8 +1,11 @@
 class Recipe < ApplicationRecord
   belongs_to :chef
+  belongs_to :difficulty_level, optional: true
+  has_many :recipe_ingredients
+  has_many :ingredients, through: :recipe_ingredients
   validates_associated :chef
   validates :name, presence: true, length: { minimum: 2 }
-  validates :description, presence: true, length: { in: 5..1000 }
+  validates :description, presence: true, length: { in: 5..1500 }
   validates :chef_id, presence: true
   default_scope -> { order(updated_at: :desc)}
 end
