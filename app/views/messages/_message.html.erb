@@ -1,0 +1,10 @@
+<div class="message">
+    <small><em>Said <%= time_ago_in_words message.created_at %> ago</em></small>
+  <p>
+    <%= gravatar_for message.chef, size: 30 %>
+    <span class="badge badge-pill badge-dark"><%= message.chef.name %></span>
+    <span class="content">
+      <%= message.content %>
+    </span>
+  </p>
+</div>

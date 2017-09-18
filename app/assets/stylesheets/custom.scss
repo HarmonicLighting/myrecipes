@@ -165,3 +165,41 @@ $comment-block-color: #dd7440;
   color: #777;
   border-top: .05rem solid #e5e5e5;
 }
+
+.center-block{
+  float: none;
+}
+
+.chat-container{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 80;
+}
+
+.messages-form{
+  margin-top: 1em;
+  .form-control{
+    border-radius: 0.5em !important;
+  }
+  .btn{
+
+  }
+}
+
+.message{
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: lighten($chef-block-color, 19%);
+  border-radius: 1em;
+}
+
+.messages{
+  border: 1px solid #eaeaea;
+  border-radius: 1em;
+  height: 60vh;
+  padding: 0.5em;
+  position: relative;
+  overflow: auto;
+}

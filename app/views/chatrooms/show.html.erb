@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>ChefChat</h2>
+  </div>
+</div>
+<div class="row justify-content-center chat-container">
+  <div class="col-10 center-block">
+    <div class="messages" id="messages">
+      <%= render @messages %>
+    </div>
+  </div>
+</div>
+<% if logged_in? %>
+<div class="messages-form">
+<%= form_for @message, remote: true, data: {behavior: "room-speaker"} do |f| %>
+  <div class="form-row align-items-center justify-content-center">
+    <div class="col-10 col-md-9">
+      <%= f.text_field :content, class: "form-control mb-2 mb-sm-0", placeholder: "Input your message" %>
+    </div>
+    <div class="col-10 col-md-1 center">
+      <%= f.submit "Send", class: "btn btn-primary", data: {send: "message"} %>
+    </div>
+  </div>
+<% end %>
+</div>
+<% end %>

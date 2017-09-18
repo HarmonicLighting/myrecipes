@@ -9,6 +9,7 @@ end
 class Chef < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_secure_password
   validates :password_digest, presence: true, length: {maximum: 72}
   validates :password, presence: true, confirmation: true, length:{in: 5..50}, on: :create
