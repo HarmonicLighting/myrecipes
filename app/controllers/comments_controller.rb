@@ -9,8 +9,12 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.chef = current_chef
     if @comment.save
-      flash[:success] =  ["Comment created",""]
-      redirect_to recipe_path @recipe
+      # ActionCable.server.broadcast "modals", render_to_string(partial: 'layouts/modal_impl', :locals => {:dismiss_class => "btn btn-secondary", :action_class => "btn btn-danger",
+      # :id => "comment#{@comment.id}", :title_text => "Confirm deletion", :modal_text => "Do you really want to delete this recipe?", :text_dismiss => "Cancel", :text_action =>"Delete",
+      # :path => recipe_comment_path(@comment.recipe, @comment), :method => "delete"})
+      ActionCable.server.broadcast "comments", render_to_string(partial: 'comments/comment', :locals => {:object => @comment, :show_buttons => false})
+      # flash[:success] =  ["Comment created",""]
+      # redirect_to recipe_path @recipe
     else
       flash[:danger]  = ["Error","Comment was not created"]
       redirect_back fallback_location: @recipe

@@ -2,7 +2,8 @@
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{@recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
 "Delete", path: recipe_path(@recipe), method: "delete" %>
 <% end %>
-
+<div id="modals">
+</div>
 <% if logged_in? %>
 <% @comments.each do |comment| %>
 <% if current_chef.admin? || current_chef == comment.chef %>
@@ -92,9 +93,11 @@
     <%= will_paginate @comments %>
   </div>
 </div>
+<div id="messages">
 <% @comments.each do |comment| %>
-<%= render 'comments/comment', comment: comment %>
+<%= render 'comments/comment', object: comment %>
 <% end %>
+</div>
 <div class="row">
   <div class="col">
     <%= will_paginate @comments %>
