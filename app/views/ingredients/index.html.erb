@@ -1,0 +1,24 @@
+<% if logged_in? && current_chef.admin? %>
+<% @ingredients.each do |ingredient| %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"ingredient#{ingredient.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete #{ingredient.name}?", text_dismiss: "Cancel", text_action:
+"Delete", path: ingredient_path(ingredient), method: "delete" %>
+<% end %>
+<% end %>
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>Available Ingredients</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <%= will_paginate %>
+  </div>
+</div>
+<% @ingredients.each do |ingredient| %>
+<%= render 'ingredient', ingredient: ingredient %>
+<% end %>
+<div class="row">
+  <div class="col">
+    <%= will_paginate %>
+  </div>
+</div>

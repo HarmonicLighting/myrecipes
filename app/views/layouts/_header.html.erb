@@ -15,14 +15,26 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to "Check all recipes", recipes_path, class:"dropdown-item" %>
-            <% if session[:chef_id] %>
+            <% if logged_in? %>
             <%= link_to "Create a new recipe", new_recipe_path, class:"dropdown-item" %>
+            <%= link_to "Add a new ingredient", new_ingredient_path, class:"dropdown-item" %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Ingredients
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Check all ingredients", ingredients_path, class:"dropdown-item" %>
+            <% if logged_in? && current_chef.admin? %>
+            <%= link_to "Add a new ingredient", new_ingredient_path, class:"dropdown-item" %>
             <% end %>
           </div>
         </li>
       </ul>
       <ul class="navbar-nav">
-        <% if session[:chef_id] %>
+        <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_chef.admin? ? "Admin " + current_chef.name : current_chef.name %>'s profile
@@ -40,10 +52,10 @@
         </li>
         <% end %>
       </ul>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <!-- <form class="form-inline">
+        <input class="form-control mr-sm-1" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-warning" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
   </nav>
 </div>

@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :chef
   belongs_to :difficulty_level, optional: true
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
   has_many :comments, dependent: :destroy
   validates_associated :chef

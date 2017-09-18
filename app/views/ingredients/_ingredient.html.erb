@@ -1,0 +1,22 @@
+<% show_check = true if local_assigns[:show_check].nil? %>
+<div class="ingredient-block">
+  <div class="row justify-content-md-center">
+    <div class="col center">
+      <h2><%=link_to ingredient.name, ingredient_path(ingredient) %> </h2>
+      <p>
+        Used in <%= pluralize ingredient.recipes.count, 'recipe' %>
+      </p>
+    </div>
+  </div>
+  <div class="row right">
+    <div class="col">
+      <% if show_check %>
+      <%= link_to "More Details", ingredient_path(ingredient), class: "btn btn-outline-primary btn-sm" %>
+      <% end %>
+      <% if logged_in? && current_chef.admin? %>
+      <%= link_to "Edit", edit_ingredient_path(ingredient), class:"btn btn-outline-secondary btn-sm" %>
+      <%= render 'layouts/modal_button', button_text:"Delete", id:"ingredient#{ingredient.id}", button_class: "btn btn-outline-danger btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>

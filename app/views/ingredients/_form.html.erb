@@ -1,0 +1,21 @@
+<%= form_for ingredient do |f|  %>
+<div class="ingredient-block">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-12 col-sm-2">
+        <%= f.label :name, "Name"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.text_field :name, class:"form-control", placeholder: "The name of the ingredient" %>
+        <small class="form-text text-muted">You will be able to specify this ingredient for your recipes.</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-block">
+  <div class="col center">
+    <%= f.submit "#{verb} this ingredient!", class: "btn btn-primary" %> <br />
+    <%= link_to "[ Cancel ]", ingredients_path %>
+  </div>
+</div>
+<% end %>

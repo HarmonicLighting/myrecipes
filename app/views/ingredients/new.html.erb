@@ -1,0 +1,7 @@
+<div class="row justify-content-center">
+  <div class="col center">
+    <h2>Add a new ingredient</h2>
+  </div>
+</div>
+<%= render 'layouts/errors', object: @ingredient, action: "adding a new ingredient" %>
+<%= render 'ingredients/form', ingredient: @ingredient, verb:"Add" %>

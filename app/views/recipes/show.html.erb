@@ -2,29 +2,61 @@
 <%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{@recipe.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
 "Delete", path: recipe_path(@recipe), method: "delete" %>
 <% end %>
+
+<% if logged_in? %>
+<% @comments.each do |comment| %>
+<% if current_chef.admin? || current_chef == comment.chef %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"comment#{comment.id}", title_text: "Confirm deletion", modal_text: "Do you really want to delete this comment?", text_dismiss: "Cancel", text_action:
+"Delete", path: recipe_comment_path(@recipe, comment), method: "delete" %>
+<% end%>
+<% end %>
+<% end %>
 <div class="row justify-content-center">
   <div class="col center">
     <h2>
       <%= @recipe.name.capitalize %>
       <% if @recipe.created_at + 1.day > Time.now %>
-      <%= render 'badge', text: "New Recipe" %>
+      <%= render 'recipes/badge', text: "New Recipe" %>
       <% end %>
     </h2>
   </div>
 </div>
 <div class="recipe-block">
   <div class="row">
-    <div class="col-3 center">
-      <%= link_to gravatar_for(@chef), @chef %>
+    <div class="col-12 col-sm-3 center">
+      <%= link_to gravatar_for(@recipe.chef), @recipe.chef %>
       <p>
-        <%= link_to "By #{@chef.name}", @chef %>
+        <%= link_to "By #{@recipe.chef.name}", @recipe.chef %>
       </p>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-sm-9">
+      <div>
       <h4>Steps:</h4>
       <p>
         <%= simple_format(@recipe.description) %>
       </p>
+      </div>
+      <hr />
+      <div>
+        <div class="rec-attribute">
+          <h5>Difficulty</h5>
+          <% if @recipe.difficulty_level %>
+          <%= link_to @recipe.difficulty_level.name, '#', class: 'badge badge-pill badge-danger' %>
+          <% else %>
+          <span class="badge badge-pill badge-info">Not specified</span>
+          <% end %>
+        </div>
+        <div class="rec-attribute">
+          <h5>Related Ingredients</h5>
+          <% if @recipe.ingredients.count > 0 %>
+          <% @recipe.ingredients.each do | ingredient |%>
+          <%= link_to ingredient.name, ingredient_path(ingredient), class: 'badge badge-pill badge-success' %>
+          <% end %>
+          <% else %>
+          <span class="badge badge-pill badge-secondary">None</span>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row right">
@@ -39,6 +71,33 @@
 <div class="row justify-content-end">
   <div class="col created-at">
     <small>Created <%= time_ago_in_words(@recipe.created_at) %> ago</small>
+  </div>
+</div>
+<div class="row">
+  <div class="col center">
+    <% if @recipe.comments.count > 0 %>
+    Comments: <%= @recipe.comments.count %>
+    <% else %>
+    No comments yet
+    <% end %>
+
+  </div>
+</div>
+<% if logged_in? %>
+<% @comment.recipe_id = @recipe.id %>
+<%= render 'comments/form', comment: @comment %>
+<% end %>
+<div class="row">
+  <div class="col">
+    <%= will_paginate @comments %>
+  </div>
+</div>
+<% @comments.each do |comment| %>
+<%= render 'comments/comment', comment: comment %>
+<% end %>
+<div class="row">
+  <div class="col">
+    <%= will_paginate @comments %>
   </div>
 </div>
 <div class="row justify-content-center footer-block">

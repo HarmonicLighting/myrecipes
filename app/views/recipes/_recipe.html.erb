@@ -10,19 +10,51 @@
     </div>
   </div>
   <div class="row justify-content-between">
-    <div class="col-3 center">
+    <div class="col-12 col-md-3 center">
           <%= link_to gravatar_for(recipe.chef, size: 100), chef_path(recipe.chef) %>
           <h6><%= link_to "by #{recipe.chef.name}", chef_path(recipe.chef) %></h6>
     </div>
-    <div class="col-8">
+    <div class="col-12 col-md-9">
+      <div>
         <h4>Steps (preview):</h4>
         <p>
           <%= truncate(recipe.description, length: 150) %>
         </p>
+      </div>
+      <hr />
+      <div>
+        <div class="rec-attribute">
+          <h6>Difficulty</h6>
+          <% if recipe.difficulty_level %>
+          <%= link_to recipe.difficulty_level.name, '#', class: 'badge badge-pill badge-danger' %>
+          <% else %>
+          <span class="badge badge-pill badge-info">Not specified</span>
+          <% end %>
+        </div>
+        <div class="rec-attribute">
+          <h6>Related Ingredients</h6>
+          <% if recipe.ingredients.count > 0 %>
+          <% recipe.ingredients.each do | ingredient |%>
+          <%= link_to ingredient.name, ingredient_path(ingredient), class: 'badge badge-pill badge-success' %>
+          <% end %>
+          <% else %>
+          <span class="badge badge-pill badge-secondary">None</span>
+          <% end %>
+        </div>
+        <div class="rec-attribute">
+          <h6>
+            <% if recipe.comments.count > 0 %>
+            Commented <%= pluralize recipe.comments.count, 'time' %>
+            <% else %>
+            Not commented yet
+            <% end %>
+          </h6>
+        </div>
+      </div>
     </div>
   </div>
-  <p>
-    <small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
+  <p class="right">
+    <small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.name %></small>
   </p>
   <div class="row right">
     <div class="col">

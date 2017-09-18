@@ -45,7 +45,11 @@
 <div class="row">
   <div class="col center">
     <h4>
+      <% if @chef.recipes.count > 0 %>
       <%= @chef.name %> has published <%= pluralize @chef.recipes.count, "recipe" %>
+      <% else %>
+      <%= @chef.name %> has not published any recipes yet
+      <% end %>
     </h4>
   </div>
 </div>

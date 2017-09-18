@@ -1,0 +1,33 @@
+<div class="comment-block">
+  <div class="row">
+    <div class="col-12 col-md-3 center">
+      <%= link_to gravatar_for(comment.chef, size: 60), chef_path(comment.chef) %>
+      <h6><%= link_to "by #{comment.chef.name}", chef_path(comment.chef) %></h6>
+      <% if comment.chef == comment.recipe.chef %>
+      <h6><span class="badge badge-pill badge-warning">Recipe Author</span></h6>
+      <% end %>
+    </div>
+    <div class="col-12 col-md-9 ">
+      <div class="comment-text">
+        <%= simple_format(comment.description) %>
+      </div>
+      <div class="right">
+        <small>
+          Originally posted <%= time_ago_in_words(comment.created_at) %> ago
+          <% if comment.created_at < comment.updated_at %>
+          <br />
+          Last edited <%= time_ago_in_words(comment.updated_at) %> ago
+          <% end %>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="row right">
+    <div class="col">
+      <% if logged_in? && (comment.chef == current_chef || current_chef.admin?) %>
+      <%= link_to "Edit", edit_recipe_comment_path(comment.recipe,comment), class:"btn btn-outline-secondary btn-sm" %>
+      <%= render 'layouts/modal_button', button_text:"Delete", id:"comment#{comment.id}", button_class: "btn btn-outline-danger btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<%= form_for [comment.recipe,comment] do |f|  %>
+<div class="comment-block">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-12 col-sm-2">
+        <%= f.label :description, "Comment"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.text_area :description, class:"form-control", placeholder: "Write your comment here" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col right">
+        <small class="form-text text-muted">Please be respectful with all participants. Comments can be 10 to 150 characters long.</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-block">
+  <div class="col center">
+    <%= f.submit "Submit", class: "btn btn-primary" %> <br />
+  </div>
+</div>
+<% end %>

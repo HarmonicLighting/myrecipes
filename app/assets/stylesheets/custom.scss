@@ -25,6 +25,15 @@ $theme-colors: (
 
 $recipe-block-color: #b393ff;
 $chef-block-color: #82acff;
+$ingredient-block-color: #52dd33;
+$comment-block-color: #dd7440;
+
+.form-check-label{
+  margin-right: 1em;
+}
+.form-check-input{
+  margin-right: 0.5em
+}
 
 .pagination {
     margin-top: 10px;
@@ -49,6 +58,13 @@ $chef-block-color: #82acff;
   // background: linear-gradient(white, lighten(#6e31af, 30%)) !important;
 }
 
+.rec-attribute{
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 1.5em;
+  background-color: lighten($recipe-block-color, 17%);
+}
+
 .chef-block{
   margin-top: 20px;
   padding: 2em;
@@ -71,6 +87,38 @@ $chef-block-color: #82acff;
 .chef-profile-block:hover{
   background-color: lighten($chef-block-color, 19%);
 }
+
+.ingredient-block{
+  margin-top: 20px;
+  padding: 2em;
+  border: 0px solid $ingredient-block-color;
+  border-radius: 1.5em;
+  background-color: lighten($ingredient-block-color, 40%);
+}
+
+.ingredient-block:hover{
+  background-color: lighten($ingredient-block-color, 35%);
+}
+
+.comment-block{
+  margin-top: 20px;
+  padding: 1em;
+  border: 0px solid $comment-block-color;
+  border-radius: 1.5em;
+  background-color: lighten($comment-block-color, 40%);
+}
+
+.comment-block:hover{
+  background-color: lighten($comment-block-color, 37%);
+}
+
+.comment-text{
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.75em;
+  background-color: lighten($comment-block-color, 35%);
+}
+
 .light-text{
   color: white !important;
 }

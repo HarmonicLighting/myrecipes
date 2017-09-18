@@ -1,0 +1,32 @@
+<% if logged_in? && current_chef.admin?%>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"ingredient#{@ingredient.id}", title_text: "Confirm ingredient deletion", modal_text: "Do you really want to delete #{@ingredient.name}'s account?", text_dismiss: "Cancel", text_action:
+"Delete", path: ingredient_path(@ingredient), method: "delete" %>
+<% end %>
+<% @recipes.each do |recipe| %>
+<% if logged_in? && (recipe.chef == current_chef || current_chef.admin? ) %>
+<%= render 'layouts/modal_impl', dismiss_class: "btn btn-secondary", action_class:"btn btn-danger", id:"recipe#{recipe.id}", title_text: "Confirm recipe deletion", modal_text: "Do you really want to delete this recipe?", text_dismiss: "Cancel", text_action:
+"Delete", path: recipe_path(recipe), method: "delete" %>
+<% end %>
+<% end %>
+<%= render 'ingredients/ingredient', ingredient: @ingredient, show_check: false %>
+<div class="row footer-block">
+  <div class="col center">
+    <h4>
+      <% if @ingredient.recipes.count > 0 %>
+      <%= @ingredient.name %> is used in <%= pluralize @ingredient.recipes.count, "recipe" %>
+      <% else %>
+      <%= @ingredient.name %> has not been used in any recipes yet
+      <% end %>
+    </h4>
+  </div>
+</div>
+<%= will_paginate @recipes %>
+<% @recipes.each do |recipe| %>
+<%= render 'recipes/recipe', recipe: recipe %>
+<% end %>
+<%= will_paginate @recipes %>
+<div class="row center footer-block">
+  <div class="col">
+    <%= link_to "Go back", ingredients_path, class: "btn btn-outline-info btn-sm" %>
+  </div>
+</div>

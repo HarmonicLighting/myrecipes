@@ -9,7 +9,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @chef = @recipe.chef
+    @comment = @recipe.comments.build()
+    @comments = @recipe.comments.paginate(page: params[:page],per_page:5)
   end
 
   def create
@@ -40,7 +41,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     if @recipe.destroy
       flash[:info]= ["Confirmation", "The recipe was deleted"]
       redirect_to recipes_path
@@ -52,7 +52,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:description)
+    params.require(:recipe).permit(:name,:description, :difficulty_level_id, ingredient_ids:[])
   end
 
   def set_recipe

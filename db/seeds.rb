@@ -11,8 +11,9 @@ chef2 = Chef.create!(name: 'Joe', email: 'JOE@EXAMPLE.COM',password: '12345asdef
 chef3 = Chef.create!(name: 'Keri', email: 'keri@EXAMPLE.COM',password: '12345asdef', password_confirmation: '12345asdef')
 chef4 = Chef.create!(name: 'Russ', email: 'russ@EXAMPLE.COM',password: '12345asdef', password_confirmation: '12345asdef')
 chef5 = Chef.create!(name: 'Terra', email: 'terra@EXAMPLE.COM',password: '12345asdef', password_confirmation: '12345asdef')
-chef6 = Chef.create!(name: 'Caballo', email: 'Caballo@EXAMPLE.COM',password: '12345asdef', password_confirmation: '12345asdef')
-chef.recipes.create!(name: 'Ordinary soup', description: 'Buy an instant soup at the closest grocery store and prepare it.')
+chef6 = Chef.create!(name: 'Caballo', email: 'ca.ballo@EXAMPLE.COM',password: '12345asdef', password_confirmation: '12345asdef')
+
+recipe = chef.recipes.create!(name: 'Ordinary soup', description: 'Buy an instant soup at the closest grocery store and prepare it.')
 chef.recipes.create!(name: 'Ordinary steak', description: 'Buy an steak at the closest grocery store and prepare it.')
 chef.recipes.create!(name: 'Ordinary udon', description: 'Buy an instant udon at the closest grocery store and prepare it.')
 chef.recipes.create!(name: 'Ordinary spagetti', description: 'Buy an spagetti at the closest grocery store and prepare it.')
@@ -33,8 +34,32 @@ DifficultyLevel.create!(level: 1, name: 'Easy')
 DifficultyLevel.create!(level: 2, name: 'Medium')
 DifficultyLevel.create!(level: 3, name: 'High')
 
-Ingredient.create!(name:'Chicken')
-Ingredient.create!(name:'Potato')
+ingredient_1 = Ingredient.create!(name:'Chicken')
+ingredient_2 = Ingredient.create!(name:'Potato')
 Ingredient.create!(name:'Tomato')
 Ingredient.create!(name:'Pork')
 Ingredient.create!(name:'Apple')
+Ingredient.create!(name:'Lettuce')
+Ingredient.create!(name:'Orange')
+Ingredient.create!(name:'Broccoli')
+Ingredient.create!(name:'Butter')
+Ingredient.create!(name:'Flour')
+Ingredient.create!(name:'Milk')
+Ingredient.create!(name:'Yogurt')
+Ingredient.create!(name:'Cheddar Cheese')
+Ingredient.create!(name:'Banana')
+Ingredient.create!(name:'Coffee')
+
+Chef.first.recipes.first.ingredients << ingredient_1
+Chef.first.recipes.last.ingredients << ingredient_2
+
+Chef.first.recipes.first.ingredients << Ingredient.last
+Chef.first.recipes.last.ingredients << Ingredient.last
+
+Chef.last.recipes.first.ingredients << Ingredient.first
+Chef.last.recipes.last.ingredients << Ingredient.first
+
+Chef.last.recipes.first.ingredients << Ingredient.last
+Chef.last.recipes.last.ingredients << Ingredient.last
+
+Comment.create!(description: 'Great recipe!', chef_id: chef.id, recipe_id: recipe.id)
