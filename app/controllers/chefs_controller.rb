@@ -32,6 +32,20 @@ class ChefsController < ApplicationController
   end
 
   def update
+    if params[:chef][:password] != "" || params[:chef][:password_confirmation] != ""
+      chef = @chef
+      if chef.authenticate(params[:chef][:old_password])
+        if params[:chef][:password] == nil || params[:chef][:password].size < 5 || params[:chef][:password].size > 50 || params[:chef][:password] != params[:chef][:password_confirmation]
+          flash.now[:danger]= ["Error", "validating your new password"]
+          render 'edit'
+          return
+        end
+      else
+        flash.now[:danger]= ["Error", "Your current password wasn't valid"]
+        render 'edit'
+        return
+      end
+    end
     if @chef.update(chef_params)
       flash[:success]= ["Updated!", "Chef #{@chef.name} was updated successfully!"]
       redirect_to chef_path(@chef)
@@ -58,6 +72,10 @@ class ChefsController < ApplicationController
   private
   def chef_params
     params.require(:chef).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def update_chef_params
+    params.require(:chef).permit(:password, :password_confirmation, :old_password)
   end
 
   def set_chef

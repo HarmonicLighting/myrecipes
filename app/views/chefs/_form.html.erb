@@ -1,3 +1,4 @@
+<% render_edit = true if local_assigns[:render_edit].nil? %>
 <%= form_for chef do |f|  %>
 <div class="chef-block">
   <div class="form-group">
@@ -25,7 +26,11 @@
   <div class="form-group">
     <div class="row justify-content-between">
       <div class="col-12 col-sm-2">
+        <% if render_edit %>
+        <%= f.label :password, "New password"  %>
+        <% else %>
         <%= f.label :password, "Your password"  %>
+        <% end %>
       </div>
       <div class="col-12 col-sm-10">
         <%= f.password_field :password, class:"form-control" %>
@@ -34,13 +39,28 @@
     </div>
     <div class="row justify-content-between">
       <div class="col-12 col-sm-2">
+        <% if render_edit %>
+        <%= f.label :password_confirmation, "Confirm new password"  %>
+        <% else %>
         <%= f.label :password_confirmation, "Confirm password"  %>
+        <% end %>
       </div>
       <div class="col-12 col-sm-10">
         <%= f.password_field :password_confirmation, class:"form-control" %>
         <small class="form-text text-muted">Both password inputs must match.</small>
       </div>
     </div>
+    <% if render_edit %>
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-2">
+        <%= f.label :old_password, "Current password"  %>
+      </div>
+      <div class="col-12 col-sm-10">
+        <%= f.password_field :old_password, class:"form-control" %>
+        <small class="form-text text-muted">You must provide the current password to change it for a new one.</small>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 <div class="row footer-block">

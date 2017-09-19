@@ -4,4 +4,4 @@
   </div>
 </div>
 <%= render 'layouts/errors', object: @chef, action: "saving changes" %>
-<%= render 'chefs/form', chef: @chef, verb:"save", path: chef_path(@chef) %>
+<%= render 'chefs/form', chef: @chef, verb:"save", path: chef_path(@chef), render_edit: true %>
