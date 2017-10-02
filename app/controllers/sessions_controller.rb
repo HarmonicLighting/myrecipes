@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
   def destroy
     if session[:chef_id]
       session[:chef_id] = nil
+      cookies.signed[:chef_id] = nil
       @current_chef = nil
       flash[:info] = ["Signed out successfully",""]
       redirect_to root_path

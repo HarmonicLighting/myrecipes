@@ -57,6 +57,19 @@
           <span class="badge badge-pill badge-secondary">None</span>
           <% end %>
         </div>
+        <div>
+          <span id="like-<%= @recipe.id %>"><%= pluralize @recipe.likes.count, 'like' %></span>
+          <% if logged_in? %>
+          <span id="like-button-<%= @recipe.id %>">
+          <% like = @recipe.likes.where(chef_id: current_chef.id).first %>
+          <% if like %>
+          <%= render 'likes/dislike', like: like %>
+          <% else %>
+          <%= render(partial: 'likes/like_form', locals: { recipe: @recipe}) %>
+          <% end %>
+          </span>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

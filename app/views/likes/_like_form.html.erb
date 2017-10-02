@@ -1,0 +1,3 @@
+<%= form_for [recipe,recipe.likes.build(chef_id: current_chef.id)], remote: true do |f|  %>
+<%= f.submit "Like", class: "btn btn-primary btn-sm" %>
+<% end %>

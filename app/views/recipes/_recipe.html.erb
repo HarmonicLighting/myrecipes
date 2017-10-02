@@ -48,6 +48,7 @@
             <% else %>
             Not commented yet
             <% end %>
+            | <%= pluralize recipe.likes.count, 'like' %>
           </h6>
         </div>
       </div>
