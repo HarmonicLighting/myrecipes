@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
     @recipes = Recipe.paginate(page: params[:page],per_page:5)
@@ -52,7 +53,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:description, :difficulty_level_id, ingredient_ids:[])
+    params.require(:recipe).permit(:name,:description, :difficulty_level_id, :picture_url, ingredient_ids:[])
   end
 
   def set_recipe
@@ -64,5 +65,9 @@ class RecipesController < ApplicationController
       flash[:danger] = ["Invalid","You can only edit or delete your own recipes"]
       redirect_to recipes_path
     end
+  end
+
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/recipes/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
   end
 end

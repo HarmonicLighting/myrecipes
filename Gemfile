@@ -7,11 +7,13 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '~> 5.1.3'
 gem 'rails-controller-testing'
 gem 'normalize-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'aws-sdk-s3', '~> 1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

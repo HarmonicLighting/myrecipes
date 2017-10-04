@@ -207,3 +207,21 @@ $comment-block-color: #dd7440;
 .new_like, .edit_like{
   display:inline-block;
 }
+
+.progress {
+  max-width: 600px;
+  margin:    0.2em 0 0.2em 0;
+}
+
+.progress .bar {
+  height:  1.2em;
+  padding-left: 0.2em;
+  color:   white;
+  display: none;
+}
+
+.recipe-block img{
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+}

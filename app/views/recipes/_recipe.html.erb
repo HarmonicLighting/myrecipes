@@ -11,8 +11,15 @@
   </div>
   <div class="row justify-content-between">
     <div class="col-12 col-md-3 center">
+      <% if recipe.picture_url %>
+      <div>
+        <%= image_tag recipe.picture_url %>
+      </div>
+      <% end %>
+      <div>
           <%= link_to gravatar_for(recipe.chef, size: 100), chef_path(recipe.chef) %>
           <h6><%= link_to "by #{recipe.chef.name}", chef_path(recipe.chef) %></h6>
+      </div>
     </div>
     <div class="col-12 col-md-9">
       <div>
